@@ -163,12 +163,8 @@ Order by
 
 -- Using CTE to perform Calculations on Partition By in previous query
 
-With PopvsVac (Continent, 
-				Location, 
-				Date, 
-				Population, 
-				New_vaccinations, 
-				CumulativeSumOfVaccinated)
+With PopvsVac 
+(Continent, Location, Date, Population, New_vaccinations, CumulativeSumOfVaccinated)
 as
 (
 SELECT 
@@ -191,8 +187,7 @@ JOIN
 Where 
 	dea.continent is not null
 )
-SELECT *, 
-		(CumulativeSumOfVaccinated/Population)*100
+SELECT *, (CumulativeSumOfVaccinated/Population)*100
 FROM 
 	PopvsVac
 
@@ -393,24 +388,3 @@ JOIN
         WHERE
             Location LIKE '%United States%'
     ) AS US ON UK.Date = US.Date;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
